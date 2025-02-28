@@ -16,48 +16,56 @@
 
 const produk = [
   {
+    id: 1,
     name: "kursi gaming",
     image: "img1.jpeg",
     price: 350000,
     stok: 20,
   },
   {
+    id: 2,
     name: "Keyboard",
     image: "img2.jpg",
     price: 500000,
     stok: 20,
   },
   {
+    id: 3,
     name: "Controller PS",
     image: "img3.jpg",
     price: 200000,
     stok: 15,
   },
   {
+    id: 4,
     name: "Headset",
     image: "img4.jpg",
     price: 180000,
     stok: 10,
   },
   {
+    id: 5,
     name: "Virtual Reality (VR)",
     image: "img5.jpeg",
     price: 250000,
     stok: 20,
   },
   {
+    id: 6,
     name: "Smartwatch",
     image: "img6.jpg",
     price: 450000,
     stok: 25,
   },
   {
+    id: 7,
     name: "Iphone",
     image: "img7.jpg",
     price: 14000000,
     stok: 10,
   },
   {
+    id: 8,
     name: "Monitor PC",
     image: "img8.jpg",
     price: 25000000,
@@ -67,12 +75,20 @@ const produk = [
 
 const Keranjang = [];
 
+if (!localStorage.getItem("produk")) {
+  localStorage.setItem("produk", JSON.stringify(produk));
+}
+
+let getProduk = JSON.parse(localStorage.getItem("produk")) || [];
+
 // fungsi menampilkan produk
 function showProduk() {
-  produk.forEach((item) => {
+  const divContainer = document.querySelector(".container");
+  divContainer.innerHTML = "";
+  getProduk.forEach((item) => {
     // element pembungkus
     const body = document.querySelector("body");
-    const divContainer = document.querySelector(".container");
+
     const cardProduct = document.createElement("div");
     const productInfo = document.createElement("div");
     const productPrice = document.createElement("div");
@@ -91,13 +107,17 @@ function showProduk() {
     // mengisi item ke dalam element utama
     img.setAttribute("src", `asset/${item.image}`);
     title.textContent = `${item.name}`;
-    price.textContent = `${item.price}`;
+    price.textContent = `Rp ${item.price.toLocaleString()}`;
     price.classList.add("price");
     stok.textContent = `${item.stok}`;
     stok.classList.add("stok");
     btnBuy.textContent = "Beli";
     btnBuy.classList.add("btn-buy");
     btnBuy.setAttribute("type", "submit");
+
+    btnBuy.onclick = function () {
+      addKeranjang(item.id);
+    };
 
     // masukkan element ke dalam setiap pembungkus
     productPrice.append(price, stok);
@@ -109,4 +129,39 @@ function showProduk() {
   });
 }
 
+function addKeranjang(id) {
+  let cart = JSON.parse(localStorage.getItem("keranjang")) || [];
+
+  if (!Array.isArray(cart)) {
+    cart = [];
+  }
+
+  const item = getProduk.find((item) => item.id === id);
+
+  if (!item) {
+    alert(`Prodk dengan id ${id} tidak ditemukan!`);
+    return;
+  }
+
+  if (item.stok <= 0) {
+    alert(`Produk ${item.name} habis!`);
+    return;
+  }
+
+  // cek produk sudah ada didalam keranjang
+  let cartItem = cart.find((cartItem) => cartItem.id === id);
+
+  if (cartItem) {
+    cartItem.stok += 1;
+  } else {
+    cart.push({ ...item, stok: 1 });
+  }
+
+  item.stok -= 1;
+  localStorage.setItem("keranjang", JSON.stringify(cart));
+  localStorage.setItem("produk", JSON.stringify(getProduk));
+
+  alert(`Produk ${item.name} berhasil ditambahkan!!`);
+  showProduk();
+}
 showProduk();
