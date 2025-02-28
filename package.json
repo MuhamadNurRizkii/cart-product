@@ -1,0 +1,12 @@
+{
+  "name": "manajemen-produk-dan-keranjang",
+  "version": "1.0.0",
+  "main": "produk.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
