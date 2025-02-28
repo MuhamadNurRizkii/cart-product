@@ -66,10 +66,16 @@ header .cart i {
   text-decoration: none;
   color: dodgerblue;
   transition: 0.3s ease;
+  margin-right: 1rem;
 }
 
 header .cart i:hover {
   transform: scale(1.1);
+}
+
+header .cart button {
+  border: none;
+  background-color: transparent;
 }
 
 h1 {
@@ -143,4 +149,72 @@ h1 {
 
 .card-product .product-info .btn-buy:hover {
   background-color: rgb(82, 94, 106);
+}
+
+.hamburger {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  list-style-type: none;
+}
+
+.hamburger li {
+  position: relative;
+}
+
+.hamburger li a {
+  text-decoration: none;
+  color: dodgerblue;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.hamburger li a::before {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  background-color: dodgerblue;
+  transform: scaleX(0);
+  transition: 0.3s ease;
+}
+
+.hamburger li a:hover::before {
+  transform: scaleX(1);
+}
+
+@media (max-width: 720px) {
+  .hamburger.active {
+    right: 0%;
+  }
+
+  header {
+    justify-content: space-between;
+    position: sticky;
+    height: 60px;
+    top: 0;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+  }
+
+  header ul {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+    position: fixed;
+    width: 15rem;
+    padding-block: 1rem;
+    top: 65px;
+    right: -100%;
+    z-index: 20;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    transition: right 0.3s ease;
+  }
 }
