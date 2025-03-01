@@ -161,7 +161,13 @@ function addKeranjang(id) {
   sessionStorage.setItem("keranjang", JSON.stringify(cart));
   sessionStorage.setItem("produk", JSON.stringify(getProduk));
 
-  alert(`Produk ${item.name} berhasil ditambahkan!!`);
+  // alert(`Produk ${item.name} berhasil ditambahkan!!`);
+  const Alert = document.querySelector(".alert");
+  Alert.classList.add("aktif");
+  setTimeout(() => {
+    Alert.classList.remove("aktif");
+  }, 2000);
   showProduk();
 }
+
 showProduk();
