@@ -75,11 +75,11 @@ const produk = [
 
 const Keranjang = [];
 
-if (!localStorage.getItem("produk")) {
-  localStorage.setItem("produk", JSON.stringify(produk));
+if (!sessionStorage.getItem("produk")) {
+  sessionStorage.setItem("produk", JSON.stringify(produk));
 }
 
-let getProduk = JSON.parse(localStorage.getItem("produk")) || [];
+let getProduk = JSON.parse(sessionStorage.getItem("produk")) || [];
 
 // fungsi menampilkan produk
 function showProduk() {
@@ -111,7 +111,7 @@ function showProduk() {
     price.classList.add("price");
     stok.textContent = `${item.stok}`;
     stok.classList.add("stok");
-    btnBuy.textContent = "Beli";
+    btnBuy.innerText = "Tambah ke keranjang";
     btnBuy.classList.add("btn-buy");
     btnBuy.setAttribute("type", "submit");
 
@@ -130,7 +130,7 @@ function showProduk() {
 }
 
 function addKeranjang(id) {
-  let cart = JSON.parse(localStorage.getItem("keranjang")) || [];
+  let cart = JSON.parse(sessionStorage.getItem("keranjang")) || [];
 
   if (!Array.isArray(cart)) {
     cart = [];
@@ -158,8 +158,8 @@ function addKeranjang(id) {
   }
 
   item.stok -= 1;
-  localStorage.setItem("keranjang", JSON.stringify(cart));
-  localStorage.setItem("produk", JSON.stringify(getProduk));
+  sessionStorage.setItem("keranjang", JSON.stringify(cart));
+  sessionStorage.setItem("produk", JSON.stringify(getProduk));
 
   alert(`Produk ${item.name} berhasil ditambahkan!!`);
   showProduk();
