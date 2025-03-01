@@ -74,6 +74,7 @@ header .cart i:hover {
 }
 
 header .cart button {
+  display: none;
   border: none;
   background-color: transparent;
 }
@@ -209,6 +210,14 @@ h1 {
 @media (max-width: 720px) {
   .hamburger.active {
     right: 0%;
+  }
+
+  header .cart i {
+    display: inline-block;
+  }
+
+  header .cart button {
+    display: inline-block;
   }
 
   header {

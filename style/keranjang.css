@@ -74,8 +74,14 @@ header .cart i:hover {
 }
 
 header .cart button {
+  display: none;
   border: none;
   background-color: transparent;
+}
+
+.info-keranjang {
+  text-align: center;
+  color: slategray;
 }
 
 h1 {
@@ -244,6 +250,14 @@ h1 {
 
   header ul {
     display: none;
+  }
+
+  header .cart i {
+    display: inline-block;
+  }
+
+  header .cart button {
+    display: inline-block;
   }
 
   .hamburger {

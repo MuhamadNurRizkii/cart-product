@@ -3,6 +3,13 @@ const data = JSON.parse(sessionStorage.getItem("keranjang")) || [];
 function showCart() {
   const divContainer = document.querySelector(".container");
   divContainer.innerHTML = "";
+  if (data.length === 0) {
+    const h2 = document.createElement("h2");
+    h2.textContent = "Produk masih kosong!!";
+    h2.classList.add("info-keranjang");
+    divContainer.appendChild(h2);
+    return;
+  }
   data.forEach((item) => {
     // element pembungkus
     const body = document.querySelector("body");
