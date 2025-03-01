@@ -207,6 +207,26 @@ h1 {
   transform: scaleX(1);
 }
 
+.alert-delete {
+  text-align: center;
+  padding-block: 10px;
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  top: -100%;
+  transform: translate(-50%);
+  width: 300px;
+  border-radius: 1rem;
+  background-color: #efefef;
+  border-bottom: 2px solid red;
+  border-left: 2px solid red;
+  transition: 1s ease;
+}
+
+.alert-delete.aktif {
+  top: 1rem;
+}
+
 @media (max-width: 720px) {
   .hamburger.active {
     right: 0%;

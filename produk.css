@@ -199,7 +199,7 @@ h1 {
   background-color: #efefef;
   border-bottom: 2px solid green;
   border-left: 2px solid green;
-  transition: 0.3s ease;
+  transition: 1s ease;
 }
 
 .alert.aktif {

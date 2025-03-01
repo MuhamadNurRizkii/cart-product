@@ -102,7 +102,7 @@ function showProduk() {
     const title = document.createElement("h2");
     const price = document.createElement("p");
     const stok = document.createElement("p");
-    const btnBuy = document.createElement("buttton");
+    const btnBuy = document.createElement("button");
 
     // mengisi item ke dalam element utama
     img.setAttribute("src", `asset/${item.image}`);
@@ -166,7 +166,7 @@ function addKeranjang(id) {
   Alert.classList.add("aktif");
   setTimeout(() => {
     Alert.classList.remove("aktif");
-  }, 2000);
+  }, 3000);
   showProduk();
 }
 

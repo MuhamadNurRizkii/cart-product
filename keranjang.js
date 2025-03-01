@@ -24,7 +24,7 @@ function showCart() {
     const title = document.createElement("h2");
     const price = document.createElement("p");
     const stok = document.createElement("p");
-    const btnBuy = document.createElement("buttton");
+    const btnBuy = document.createElement("button");
     const btnDelete = document.createElement("button");
 
     // mengisi item ke dalam element utama
@@ -38,7 +38,6 @@ function showCart() {
     btnDelete.classList.add("btn-delete");
     btnBuy.innerText = "Beli";
     btnBuy.classList.add("btn-buy");
-    btnBuy.setAttribute("type", "submit");
 
     // btnBuy.onclick = function () {
     //   addKeranjang(item.id);
@@ -71,7 +70,11 @@ function deleteCart(id) {
   if (productElement) {
     productElement.remove();
 
-    alert("Data berhasil dihapus!!");
+    const AlertDelete = document.querySelector(".alert-delete");
+    AlertDelete.classList.add("aktif");
+    setTimeout(() => {
+      AlertDelete.classList.remove("aktif");
+    }, 3000);
   }
 }
 
