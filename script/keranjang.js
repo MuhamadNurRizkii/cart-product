@@ -1,5 +1,5 @@
 const data = JSON.parse(sessionStorage.getItem("keranjang")) || [];
-const produk = JSON.parse(sessionStorage.getItem("produk"));
+const produk = JSON.parse(sessionStorage.getItem("produk")) || [];
 
 function showCart() {
   const divContainer = document.querySelector(".container");
@@ -67,12 +67,18 @@ function showCart() {
 
 function deleteCart(id) {
   const index = data.findIndex((item) => item.id === id);
+  const produkIndex = produk.findIndex((item) => item.id === id);
 
   if (index !== -1) {
     if (data[index].stok > 0) {
       data[index].stok -= 1;
-      produk[index].stok += 1;
-    } else {
+    }
+
+    if (produkIndex !== -1) {
+      produk[produkIndex].stok += 1;
+    }
+
+    if (data[index].stok === 0) {
       data.splice(index, 1);
     }
 
