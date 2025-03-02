@@ -108,7 +108,7 @@ h1 {
 }
 
 .card-product:hover {
-  transform: translateY(-8px);
+  /* transform: translateY(-8px); */
   box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.5);
 }
 
@@ -151,6 +151,10 @@ h1 {
 
 .card-product .product-info .btn-buy:hover {
   background-color: rgb(82, 94, 106);
+}
+
+.card-product .product-info .btn-buy:active {
+  transform: scale(0.95);
 }
 
 .hamburger {

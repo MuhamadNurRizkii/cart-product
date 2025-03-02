@@ -13,7 +13,6 @@ function showCart() {
   data.forEach((item) => {
     // element pembungkus
     const body = document.querySelector("body");
-
     const cardProduct = document.createElement("div");
     const productInfo = document.createElement("div");
     const productPrice = document.createElement("div");
@@ -39,7 +38,7 @@ function showCart() {
     title.textContent = `${item.name}`;
     price.textContent = `Rp ${item.price.toLocaleString()}`;
     price.classList.add("price");
-    stok.textContent = `${item.stok}`;
+    stok.textContent = `stok: ${item.stok}`;
     stok.classList.add("stok");
     btnDelete.innerText = "Hapus";
     btnDelete.classList.add("btn-delete");
@@ -69,20 +68,23 @@ function deleteCart(id) {
   const index = data.findIndex((item) => item.id === id);
 
   if (index !== -1) {
-    data.splice(index, 1);
+    if (data[index].stok > 1) {
+      data[index].stok -= 1;
+    } else {
+      data.splice(index, 1);
+    }
+
     sessionStorage.setItem("keranjang", JSON.stringify(data));
-  }
+    showCart();
 
-  const productElement = document.getElementById(`product-${id}`);
-  if (productElement) {
-    productElement.remove();
-
+    // Menampilkan alert penghapusan
     const AlertDelete = document.querySelector(".alert-delete");
-    AlertDelete.classList.add("aktif");
-    setTimeout(() => {
-      AlertDelete.classList.remove("aktif");
-    }, 3000);
+    if (AlertDelete) {
+      AlertDelete.classList.add("aktif");
+      setTimeout(() => {
+        AlertDelete.classList.remove("aktif");
+      }, 3000);
+    }
   }
 }
-
 showCart();
