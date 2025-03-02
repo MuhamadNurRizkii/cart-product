@@ -109,7 +109,7 @@ function showProduk() {
     title.textContent = `${item.name}`;
     price.textContent = `Rp ${item.price.toLocaleString()}`;
     price.classList.add("price");
-    stok.textContent = `${item.stok}`;
+    stok.textContent = `stok: ${item.stok}`;
     stok.classList.add("stok");
     btnBuy.innerText = "Tambah ke keranjang";
     btnBuy.classList.add("btn-buy");
