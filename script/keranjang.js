@@ -1,4 +1,5 @@
 const data = JSON.parse(sessionStorage.getItem("keranjang")) || [];
+const produk = JSON.parse(sessionStorage.getItem("produk"));
 
 function showCart() {
   const divContainer = document.querySelector(".container");
@@ -68,13 +69,15 @@ function deleteCart(id) {
   const index = data.findIndex((item) => item.id === id);
 
   if (index !== -1) {
-    if (data[index].stok > 1) {
+    if (data[index].stok > 0) {
       data[index].stok -= 1;
+      produk[index].stok += 1;
     } else {
       data.splice(index, 1);
     }
 
     sessionStorage.setItem("keranjang", JSON.stringify(data));
+    sessionStorage.setItem("produk", JSON.stringify(produk));
     showCart();
 
     // Menampilkan alert penghapusan
